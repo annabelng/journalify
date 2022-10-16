@@ -13,9 +13,9 @@ cur.execute("""
 
 cur.execute("""
 	CREATE TABLE IF NOT EXISTS entries(
-	  title TEXT,
 	  user_id INTEGER,
-	  entry TEXT)""") #user with user_id can edit cuz they're the author
+      date TEXT,
+	  summary TEXT)""")
 
 db.commit()
 db.close()
@@ -88,3 +88,56 @@ def fetch_username(user_id):
 
 	db.close()
 	return username
+
+
+def add_to_journal(user_id, entry, date):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    def is_in_journal(user_id, date):
+        c.execute("""
+            SELECT *
+                FROM   entries
+                WHERE  user_id = ?
+                AND  date = ?""", (user_id, date))
+        summary = c.fetchone()
+        return summary is not None # returns True if the summary exists
+
+    if is_in_journal(user_id, date):
+        return False #don't add to journal if the entry for that date was already made
+    
+    c.execute("""
+        INSERT INTO entries(user_id, date, summary)
+            VALUES (?,?,?)""", (user_id, date, entry))
+    db.commit()
+    db.close()
+    return True # successfully added to library
+
+
+def fetch_journal(user_id):
+    """
+    Returns a list of dictionaries of entries which makes up the user's journal
+    """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    
+    c.execute("""
+        SELECT date
+                , summary
+        FROM   entries
+        WHERE  user_id = ? """, (user_id,))
+        
+    journal = c.fetchall()
+    
+    entries = []
+    for date, summary in journal:
+        dict = {
+            'date': date,
+            'entry': summary
+        }
+        entries.append(dict)
+    
+    db.commit()
+    db.close()
+    
+    return entries

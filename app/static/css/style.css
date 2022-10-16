@@ -48,10 +48,12 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
+/* Added stuff */
 #btn-background {
     background-color: #3b4e76;
     color: #e5ecff;
 }
+/* Added Stuff */
 
 body {
   margin: 0;

@@ -1,8 +1,10 @@
 from flask import Flask, request, redirect, render_template, session
+from datetime import datetime
 import db
 
 app = Flask(__name__)
 app.secret_key = "foo"
+
 
 @app.route("/")
 def index():
@@ -10,6 +12,7 @@ def index():
     Displays the default page of the website
     """
     return render_template("index.html")
+
 
 @app.route("/signup", methods=['POST'])
 def signup():
@@ -30,7 +33,8 @@ def signup():
     if not register_success:
         return render_template("index.html", explain="Username already exists")
     else:
-        return render_template("index.html")
+        return redirect("/home")
+
 
 @app.route("/login", methods=['POST'])
 def login():
@@ -52,9 +56,36 @@ def login():
     session["user_id"] = user_id
     return redirect("/home")
 
+
 @app.route("/home")
 def home():
     return render_template("home.html")
+
+
+@app.route("/entry", methods=["POST"])
+def entry():
+    """
+    Retrieves the user's new entry and adds it to their lists of entries.
+    """
+    entry = request.form["entry"]
+    date = request.form["date"] # 2022-10-15
+    # print(entry, date) # works with new lines!!
+    '''
+    >>> from datetime import datetime
+    >>> now = datetime.now()
+    >>> print(now)
+    2022-10-15 21:39:37.232720
+    >>> now.strftime("%B %d %Y")
+    'October 15 2022'
+    '''
+    format_data = "%Y-%m-%d"
+    date = datetime.strptime(date, format_data) #format the time stamp which is in string format to date-time object.
+    date = date.strftime("%B %d %Y") # October 10, 2022
+    print("DEBUG: " + date)
+
+    db.add_to_journal(session["user_id"], entry, date)
+    return render_template("home.html", entries=db.fetch_journal(session["user_id"]))
+
 
 if __name__ == "__main__":
 	app.debug = True
