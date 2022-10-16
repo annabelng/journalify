@@ -18,6 +18,7 @@ cur.execute("""
       date TEXT,
 	  summary TEXT,
       song TEXT,
+      title TEXT,
       image TEXT)""")
 
 db.commit()
@@ -111,12 +112,14 @@ def add_to_journal(user_id, entry, date):
 
     # TODO: ADD SPOTIFY SONG AND IMAGE INTO THE TABLE
     emotion = train.classify(entry)
+    song_dict = api.pick_song(emotion)
     print(emotion)
     c.execute("""
-        INSERT INTO entries(user_id, date, summary, song)
-            VALUES (?,?,?,?)""", (user_id, date, entry, api.pick_song(emotion)))
+        INSERT INTO entries(user_id, date, summary, song, title, image)
+            VALUES (?,?,?,?, ?, ?)""", (user_id, date, entry, song_dict['link'], song_dict['title'], song_dict['cover']))
     db.commit()
     db.close()
+    print(song_dict['cover'])
     return True # successfully added to library
 
 
@@ -131,18 +134,21 @@ def fetch_journal(user_id):
         SELECT date
                 , summary
                 , song
+                , title
+                , image 
         FROM   entries
         WHERE  user_id = ? """, (user_id,))
         
     journal = c.fetchall()
     
     entries = []
-    for date, summary, song in journal:
+    for date, summary, song, title, image in journal:
         dict = {
             'date': date,
             'summary': summary,
             'song': song,
-            'image': "image.png"
+            'title': title,
+            'image': image
         }
         entries.append(dict)
     

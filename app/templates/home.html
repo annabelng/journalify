@@ -51,7 +51,7 @@
             <div class="container">
                 <!-- About Section Heading-->
                 <div class="text-center">
-                    <h2 class="page-section-heading d-inline-block">How was your day?</h2>
+                    <h2 class="page-section-heading d-inline-block">How was your day, {{ user }}?</h2>
                 </div>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
@@ -131,11 +131,11 @@
                                     </div>
                                      <!-- Entries Modal - Image -->
                                      <!-- ADD SPTOIFY SONG COVER??? -->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/html0.png" alt="SPOTIFY SONG COVER NAME"/>
+                                    <img class="img-fluid rounded mb-5" src="{{entry.image}}" alt="{{entry.title}}" style="height: 300px"/>
                                     <!-- Entries Modal - Text-->
-                                     <p class="mb-5">
-                                        <a href="{{ entry.song }}" target="_blank">{{ entry.title }}</a>
-                                        <br>
+                                    <h3><a href="{{ entry.song }}" target="_blank">{{ entry.title }}</a></h3>
+                                    <br>
+                                     <p class="mb-5" style="font-size: 20px">
                                         <!-- loop through a list of paragraphs of the entries -->
                                         {% for x in entry.summary.split('\n') %}
                                             {{ x }}

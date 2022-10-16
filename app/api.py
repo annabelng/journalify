@@ -12,7 +12,7 @@ sp = spotipy.Spotify(auth_manager=auth_manager)
 id_dict = {
     "fear": "2lkAyQ5IQJ915b1XINnHX3",
     "love": "3dMIEhfffi6N84egPByLIY",
-    "happiness": "5yI34GDYLxUxfSrpshdNVE",
+    "happy": "5yI34GDYLxUxfSrpshdNVE",
     "sadness": "4yXfnhz0BReoVfwwYRtPBm",
     "surprise": "30Zp2r5erHeBJNQi1boSij",
 }
@@ -39,6 +39,6 @@ def pick_song(emotion):
     details = {
         "title": title,
         "link": spotify_link,
-        "cover": cover,
+        "cover": cover
     }
     return details

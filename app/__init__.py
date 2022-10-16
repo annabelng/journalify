@@ -59,7 +59,7 @@ def login():
 
 @app.route("/home")
 def home():
-    return render_template("home.html", entries = db.fetch_journal(session["user_id"]))
+    return render_template("home.html", user = session['user'], entries = db.fetch_journal(session["user_id"]))
 
 
 @app.route("/entry", methods=["POST"])
@@ -85,9 +85,9 @@ def entry():
 
     added = db.add_to_journal(session["user_id"], entry, date)
     if added:
-        return render_template("home.html", entries = db.fetch_journal(session["user_id"]))
+        return render_template("home.html", user = session['user'], entries = db.fetch_journal(session["user_id"]))
     else:
-        return render_template("home.html", entries = db.fetch_journal(session["user_id"]), explain = "An entry for this day was already written")
+        return render_template("home.html", user = session['user'], entries = db.fetch_journal(session["user_id"]), explain = "An entry for this day was already written")
 
 
 if __name__ == "__main__":
