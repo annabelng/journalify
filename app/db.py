@@ -110,9 +110,10 @@ def add_to_journal(user_id, entry, date):
         return False #don't add to journal if the entry for that date was already made
 
     # TODO: ADD SPOTIFY SONG AND IMAGE INTO THE TABLE
+    emotion = train.classify(entry)
     c.execute("""
         INSERT INTO entries(user_id, date, summary, song)
-            VALUES (?,?,?,?)""", (user_id, date, entry, train.classify(entry)))
+            VALUES (?,?,?,?)""", (user_id, date, entry, api.pick_song(emotion)))
     db.commit()
     db.close()
     return True # successfully added to library

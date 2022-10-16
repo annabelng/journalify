@@ -21,19 +21,21 @@ id_dict = {
     "surprise": "30Zp2r5erHeBJNQi1boSij",
 }
 
-id = id_dict['fear'] #gets full detail of tracks in specific emotion playlist
-list_tracks = sp.playlist_tracks(id)
-#print(list_tracks)
+def pick_song(emotion):
+    id = id_dict['fear'] #gets full detail of tracks in specific emotion playlist
+    list_tracks = sp.playlist_tracks(id)
+    #print(list_tracks)
 
-#track = random.choice(list_tracks)
-# print(random.choice(list_tracks['items']))
-items = list_tracks['items']
-item = list_tracks['items'][random.randint(0,len(items))]
-track = item['track']
-#print("track", track)
-#print()
-urls = track['external_urls']
-#print("urls", urls)
-#print()
-spotify_link = urls['spotify']
-print(spotify_link)
+    #track = random.choice(list_tracks)
+    # print(random.choice(list_tracks['items']))
+    items = list_tracks['items']
+    item = list_tracks['items'][random.randint(0,len(items))]
+    track = item['track']
+    #print("track", track)
+    #print()
+    urls = track['external_urls']
+    #print("urls", urls)
+    #print()
+    spotify_link = urls['spotify']
+    #print(spotify_link)
+    return spotify_link
