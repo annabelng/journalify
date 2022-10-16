@@ -17,4 +17,4 @@ Introducing Journalify, your new favorite tool for soundtracking your day. Write
 - `export SPOTIPY_CLIENT_SECRET=<secret key>`
 5. Cd into app directory: `cd app`
 6. Start the Flask server: `python3 __init__.py`
-7. In a browser, paste in `https://127.0.0.1:5000/`
+7. Run local host in a browser `https://127.0.0.1:5000/`
