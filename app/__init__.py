@@ -87,7 +87,7 @@ def entry():
     if added:
         return render_template("home.html", entries = db.fetch_journal(session["user_id"]))
     else:
-        return render_template("home.html", entries = db.fetch_journal(session["user_id"]), explain = "An entry for this day was already made")
+        return render_template("home.html", entries = db.fetch_journal(session["user_id"]), explain = "An entry for this day was already written")
 
 
 if __name__ == "__main__":

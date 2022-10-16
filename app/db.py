@@ -109,7 +109,6 @@ def add_to_journal(user_id, entry, date):
         return False #don't add to journal if the entry for that date was already made
 
     # TODO: ADD SPOTIFY SONG AND IMAGE INTO THE TABLE
-
     c.execute("""
         INSERT INTO entries(user_id, date, summary)
             VALUES (?,?,?)""", (user_id, date, entry))
