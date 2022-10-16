@@ -13,7 +13,7 @@
         <!-- Fonts CSS-->
         <link rel="stylesheet" href="../static/css/heading.css">
         <link rel="stylesheet" href="../static/css/body.css">
-        <link rel="icon" href="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-download-logo-30.png">
+        <link rel="icon" href="https://i.ibb.co/7bLPpWr/Instagram-post-1-4.png">
     </head>
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
@@ -21,7 +21,7 @@
                 <button class="navbar-toggler navbar-toggler-right font-weight-bold text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#write">Add an Entry</a>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#write">Add Entry</a>
                         </li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#journal">Journal</a>
                         </li>
@@ -31,9 +31,7 @@
         </nav>
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png" alt="">
-                <!-- Masthead Heading-->
-                <h1 class="masthead-heading mb-0">Journalify</h1>
+                <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="https://i.ibb.co/7bLPpWr/Instagram-post-1-4.png" alt="Journalify">
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -133,8 +131,9 @@
                                      <!-- ADD SPTOIFY SONG COVER??? -->
                                     <img class="img-fluid rounded mb-5" src="{{entry.image}}" alt="{{entry.title}}" style="height: 300px"/>
                                     <!-- Entries Modal - Text-->
-                                    <h3><a href="{{ entry.song }}" target="_blank">{{ entry.title }}</a></h3>
                                     <br>
+                                    <i class="fa fa-music fa-lg" aria-hidden="true"></i><h3><a href="{{ entry.song }}" target="_blank">{{ entry.title }}</a></h3>
+                                    <br><br>
                                      <p class="mb-5" style="font-size: 20px">
                                         <!-- loop through a list of paragraphs of the entries -->
                                         {% for x in entry.summary.split('\n') %}
