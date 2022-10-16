@@ -5,12 +5,8 @@ import os
 from spotipy.oauth2 import SpotifyClientCredentials
 
 
-#os.environ["SPOTIPY_CLIENT_ID"] = 'b744b689be034874b6ca5f446ef730e2'
-#os.environ["SPOTIPY_CLIENT_ID"] = '7d32b9bd1c8a4ebda4b3b158bee501fc'
 auth_manager = SpotifyClientCredentials()
 sp = spotipy.Spotify(auth_manager=auth_manager)
-#export SPOTIPY_CLIENT_ID='b744b689be034874b6ca5f446ef730e2'
-#export SPOTIPY_CLIENT_SECRET='7d32b9bd1c8a4ebda4b3b158bee501fc'
 
 
 id_dict = {
@@ -38,4 +34,8 @@ def pick_song(emotion):
     #print()
     spotify_link = urls['spotify']
     #print(spotify_link)
+    details = {
+        "title": 
+        "link": spotify_link
+    }
     return spotify_link
