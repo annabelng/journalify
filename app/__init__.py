@@ -11,7 +11,13 @@ def index():
     """
     Displays the default page of the website
     """
+    if logged_in():
+        return redirect("/home")
     return render_template("index.html")
+
+
+def logged_in():
+    return 'user' in session
 
 
 @app.route("/signup", methods=['POST'])
@@ -33,6 +39,9 @@ def signup():
     if not register_success:
         return render_template("index.html", explain="Username already exists")
     else:
+        user_id = db.fetch_user_id(user, pwd)
+        session["user"] = db.fetch_username(user_id)
+        session["user_id"] = user_id
         return redirect("/home")
 
 
@@ -57,9 +66,19 @@ def login():
     return redirect("/home")
 
 
+@app.route("/logout")
+def logout():
+    if logged_in():
+        session.pop("user")
+        session.pop("user_id")
+    return redirect("/")
+
+
 @app.route("/home")
 def home():
-    return render_template("home.html", user = session['user'], entries = db.fetch_journal(session["user_id"]))
+    if logged_in():
+        return render_template("home.html", user = session['user'], entries = db.fetch_journal(session["user_id"]))
+    return redirect("/")
 
 
 @app.route("/entry", methods=["POST"])
