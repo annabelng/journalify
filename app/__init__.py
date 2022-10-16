@@ -59,7 +59,7 @@ def login():
 
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", entries = db.fetch_journal(session["user_id"]))
 
 
 @app.route("/entry", methods=["POST"])
@@ -83,8 +83,11 @@ def entry():
     date = date.strftime("%B %d %Y") # October 10, 2022
     print("DEBUG: " + date)
 
-    db.add_to_journal(session["user_id"], entry, date)
-    return render_template("home.html", entries=db.fetch_journal(session["user_id"]))
+    added = db.add_to_journal(session["user_id"], entry, date)
+    if added:
+        return render_template("home.html", entries = db.fetch_journal(session["user_id"]))
+    else:
+        return render_template("home.html", entries = db.fetch_journal(session["user_id"]), explain = "An entry for this day was already made")
 
 
 if __name__ == "__main__":

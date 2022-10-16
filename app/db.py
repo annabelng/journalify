@@ -15,7 +15,9 @@ cur.execute("""
 	CREATE TABLE IF NOT EXISTS entries(
 	  user_id INTEGER,
       date TEXT,
-	  summary TEXT)""")
+	  summary TEXT,
+      song TEXT,
+      image TEXT)""")
 
 db.commit()
 db.close()
@@ -105,7 +107,9 @@ def add_to_journal(user_id, entry, date):
 
     if is_in_journal(user_id, date):
         return False #don't add to journal if the entry for that date was already made
-    
+
+    # TODO: ADD SPOTIFY SONG AND IMAGE INTO THE TABLE
+
     c.execute("""
         INSERT INTO entries(user_id, date, summary)
             VALUES (?,?,?)""", (user_id, date, entry))
@@ -133,7 +137,9 @@ def fetch_journal(user_id):
     for date, summary in journal:
         dict = {
             'date': date,
-            'entry': summary
+            'summary': summary,
+            'song': "",
+            'image': "image.png"
         }
         entries.append(dict)
     
