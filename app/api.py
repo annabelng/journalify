@@ -18,7 +18,7 @@ id_dict = {
 }
 
 def pick_song(emotion):
-    id = id_dict['fear'] #gets full detail of tracks in specific emotion playlist
+    id = id_dict[emotion] #gets full detail of tracks in specific emotion playlist
     list_tracks = sp.playlist_tracks(id)
     #print(list_tracks)
 
@@ -34,8 +34,11 @@ def pick_song(emotion):
     #print()
     spotify_link = urls['spotify']
     #print(spotify_link)
+    title = track['name']
+    cover = track['album']['images'][0]['url']
     details = {
-        "title": 
-        "link": spotify_link
+        "title": title,
+        "link": spotify_link,
+        "cover": cover,
     }
-    return spotify_link
+    return details
