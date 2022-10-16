@@ -1,4 +1,5 @@
 import sqlite3
+import train
 import api
 
 DB_FILE = "database.db"
@@ -110,8 +111,8 @@ def add_to_journal(user_id, entry, date):
 
     # TODO: ADD SPOTIFY SONG AND IMAGE INTO THE TABLE
     c.execute("""
-        INSERT INTO entries(user_id, date, summary)
-            VALUES (?,?,?)""", (user_id, date, entry))
+        INSERT INTO entries(user_id, date, summary, song)
+            VALUES (?,?,?,?)""", (user_id, date, entry, train.classify(entry)))
     db.commit()
     db.close()
     return True # successfully added to library
@@ -127,17 +128,18 @@ def fetch_journal(user_id):
     c.execute("""
         SELECT date
                 , summary
+                , song
         FROM   entries
         WHERE  user_id = ? """, (user_id,))
         
     journal = c.fetchall()
     
     entries = []
-    for date, summary in journal:
+    for date, summary, song in journal:
         dict = {
             'date': date,
             'summary': summary,
-            'song': "",
+            'song': song,
             'image': "image.png"
         }
         entries.append(dict)
