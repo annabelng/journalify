@@ -15,6 +15,7 @@ id_dict = {
     "happy": "5yI34GDYLxUxfSrpshdNVE",
     "sadness": "4yXfnhz0BReoVfwwYRtPBm",
     "surprise": "30Zp2r5erHeBJNQi1boSij",
+    "anger": "4ZAi2LyijuBOstWElD9iSC",
 }
 
 def pick_song(emotion):
