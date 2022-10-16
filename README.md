@@ -1,5 +1,11 @@
 # Journalify by Annabel Ng, Annabelle Park, and Rachel Xiao
 
+
+<p align="center">
+  <img src="https://github.com/annabelng/journalify/blob/main/journalify_logo.png">
+</p>
+
+
 ## Description
 Struggling to find the perfect song at the end of the day? Can’t quite put a finger on your emotions? 
 
