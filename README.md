@@ -13,8 +13,8 @@ Introducing Journalify, your new favorite tool for soundtracking your day. Write
 3. Install the required modules: `pip install -r requirements.txt`
 4. Log in to your Spotify account [here]('https://developer.spotify.com/') and create an app [here]('https://developer.spotify.com/dashboard/applications')
 - Export your Spotipy client ID and secret key
-- 'export SPOTIPY_CLIENT_ID=<id from dashboard>'
-- 'export SPOTIPY_CLIENT_SECRET=<secret key>'
+- `export SPOTIPY_CLIENT_ID=<id from dashboard>`
+- `export SPOTIPY_CLIENT_SECRET=<secret key>`
 5. Cd into app directory: `cd app`
 6. Start the Flask server: `python3 __init__.py`
 7. In a browser, paste in `https://127.0.0.1:5000/`
