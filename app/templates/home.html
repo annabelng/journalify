@@ -134,7 +134,7 @@
                                     <img class="img-fluid rounded mb-5" src="assets/img/html0.png" alt="SPOTIFY SONG COVER NAME"/>
                                     <!-- Entries Modal - Text-->
                                      <p class="mb-5">
-                                        <a href="{{ entry.song }}"></a>
+                                        <a href="{{ entry.song }}" target="_blank">{{ entry.title }}</a>
                                         <br>
                                         <!-- loop through a list of paragraphs of the entries -->
                                         {% for x in entry.summary.split('\n') %}

@@ -111,6 +111,7 @@ def add_to_journal(user_id, entry, date):
 
     # TODO: ADD SPOTIFY SONG AND IMAGE INTO THE TABLE
     emotion = train.classify(entry)
+    print(emotion)
     c.execute("""
         INSERT INTO entries(user_id, date, summary, song)
             VALUES (?,?,?,?)""", (user_id, date, entry, api.pick_song(emotion)))
