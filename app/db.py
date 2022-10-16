@@ -1,6 +1,7 @@
 import sqlite3
 import train
 import api
+from datetime import datetime
 
 DB_FILE = "database.db"
 db = sqlite3.connect(DB_FILE)
@@ -154,5 +155,6 @@ def fetch_journal(user_id):
     
     db.commit()
     db.close()
-    
-    return entries
+
+    format_data = "%B %d, %Y"
+    return sorted(entries, key=lambda x: datetime.strptime(x['date'], format_data)) #sort entries by date

@@ -99,7 +99,7 @@ def entry():
     '''
     format_data = "%Y-%m-%d"
     date = datetime.strptime(date, format_data) #format the time stamp which is in string format to date-time object.
-    date = date.strftime("%B %d %Y") # October 10, 2022
+    date = date.strftime("%B %d, %Y") # October 10, 2022
     print("DEBUG: " + date)
 
     added = db.add_to_journal(session["user_id"], entry, date)
