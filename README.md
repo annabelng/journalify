@@ -9,7 +9,7 @@ Introducing Journalify, your new favorite tool for soundtracking your day. Write
 ## Launch Codes:
 
 1. Clone this repository: `git clone https://github.com/annabelng/journalify.git`
-2. Cd into the repo directory: `cd congenial-broccolis`
+2. Cd into the repo directory: `cd journalify`
 3. Install the required modules: `pip install -r requirements.txt`
 4. Log in to your Spotify account [here]('https://developer.spotify.com/') and create an app [here]('https://developer.spotify.com/dashboard/applications')
 - Export your Spotipy client ID and secret key
